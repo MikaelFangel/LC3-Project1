@@ -9,14 +9,14 @@ READS           ST          R1,Save1                                ; Save regis
                 ST          R2,Save2
                 ST          R3,Save3
                 ST          R4,Save4
-                LEA         R1,INPUT
+                LEA         R0,INPUT
+                PUTS                                                ; Prints the string labelled input to the console
                 AND         R1,R1,#0
                 AND         R2,R2,#0
                 LD          R3,ASCII
-                PUTS                                                ; Prints the string labelled input to the console
                 IN
                 ADD         R1,R0,R3                                ; Moves the ASCII value to R1 and converts to bin
-                LEA         R4,MULTR1
+                LEA         R4,MULT10
                 JSRR        R4
                 IN
                 ADD         R2,R0,R3                                ; Moves the ASCII value to R2 and converts to bin
@@ -30,7 +30,7 @@ READS           ST          R1,Save1                                ; Save regis
                 LD          R1,Save1
                 HALT
 ;
-MULT10R1        AND         R0,R0,#0                                ; Multiplies the value in R1 with 10
+MULT10          AND         R0,R0,#0                                ; Multiplies the value in R1 with 10
                 AND         R4,R4,#0
                 ADD         R4,R1,#0
                 ADD         R0,R0,#9
