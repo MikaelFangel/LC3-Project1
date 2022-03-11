@@ -10,8 +10,8 @@
 PRINT0          LEA         R0,RESULT0
                 PUTS
                 BRnzp       RETURN
-PRINT1          
-                LEA         R0,RESULT1
+;
+PRINT1          LEA         R0,RESULT1
                 PUTS
 RETURN          RET
 ;
