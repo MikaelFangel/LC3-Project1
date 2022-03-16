@@ -8,6 +8,8 @@
 ISPRIME         ST          R1,Save1
                 ST          R2,Save2
                 ST          R3,Save2
+                ADD         R2,R0,#-1               ; Check if R0 is 1 to avoid infinity loop
+                BRz         NOTAPRIME
                 AND         R2,R2,#0
 ;
 DIVIDE          ADD         R2,R2,#-1
