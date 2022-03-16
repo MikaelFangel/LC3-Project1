@@ -24,11 +24,17 @@ NEWIN           IN
                 BRz         ENDLOOP
 ;                
                 ADD         R3,R0,R1                                ; Converts from ASCII to binary
+                BRn         ERROR                                   ; Checks if ASCII value is below 0
+                ADD         R4,R3,#-10
+                BRzp        ERROR                                   ; Check if above 9
                 ADD         R6,R6,#-1
                 STR         R3,R6,#0                                ; Stores in a simple stack
 ;                
                 ADD         R2,R2,#-1                               ; Ensures a maximum of five digits is entered
                 BRz         ENDLOOP
+                BRnzp       NEWIN
+ERROR           LEA         R0,ERRORMSG
+                PUTS
                 BRnzp       NEWIN
 ;
 ENDLOOP         AND         R0,R0,#0
@@ -54,7 +60,7 @@ AGAIN           ADD         R1,R1,R4                                ; The actual
 ;
 SKIP            ADD         R0,R0,R1                                ; The running sum
                 BRnzp       MULT
-                
+;
 RETURN          LD          R5,Save5                                ; Restore original register values
                 LD          R4,Save4
                 LD          R3,Save3
@@ -63,6 +69,7 @@ RETURN          LD          R5,Save5                                ; Restore or
                 RET
 ;
 INPUT           .STRINGZ    "Input a 2 digit decimal number (end with newline):"
+ERRORMSG        .STRINGZ    "Error not a number. Try again!"
 ASCII           .FILL       xFFD0                                   ; To account for difference between ascii and 2's complement
 EMPTY           .FILL       xC000
 STACK           .FILL       x4000
