@@ -6,7 +6,13 @@
 ;   Output: the number read from the console in R0
 ;
                 .ORIG       x4000
-READS           LEA         R0,INPUT
+READS           ST          R1,Save1                                ; Save registers that are need by routine
+                ST          R2,Save2
+                ST          R3,Save3
+                ST          R4,Save4
+                ST          R5,Save5
+;
+                LEA         R0,INPUT
                 LD          R1,ASCII
                 LD          R6,STACK
                 PUTS                                                ; Prints the string labelled input to the console
@@ -46,7 +52,12 @@ AGAIN           ADD         R1,R1,R4
 SKIP            ADD         R0,R0,R1
                 BRnzp       MULT
                 
-RETURN          RET
+RETURN          LD          R5,Save5                                ; Restore original register values
+                LD          R4,Save4
+                LD          R3,Save3
+                LD          R2,Save2
+                LD          R1,Save1
+                RET
 ;
 INPUT           .STRINGZ    "Input a 2 digit decimal number (end with newline):"
 ASCII           .FILL       xFFD0                                   ; To account for difference between ascii and 2's complement
@@ -56,4 +67,9 @@ MULTIPLIERS     .FILL       #9
                 .FILL       #99
                 .FILL       #999
                 .FILL       #9999
+Save1           .FILL       x0000
+Save2           .FILL       x0000
+Save3           .FILL       x0000
+Save4           .FILL       x0000
+Save5           .FILL       x0000
                 .END
