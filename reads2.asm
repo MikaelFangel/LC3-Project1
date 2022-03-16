@@ -38,12 +38,14 @@ MULT            LD          R2,EMPTY
                 BRz         RETURN
                 LDR         R1,R6,#0                                ; Get top of stack
                 ADD         R6,R6,#1
-                ADD         R0,R0,#0
-                BRz         SKIP
+;                ADD         R0,R0,#0
+;                BRz         SKIP
 ;               
                 ADD         R4,R1,#0
                 LDR         R3,R5,#0
                 ADD         R5,R5,#1
+                ADD         R3,R3,#0
+                BRz         SKIP
                 ADD         R1,R1,#0
                 BRnp        AGAIN
                 ADD         R3,R3,#1
@@ -67,7 +69,8 @@ INPUT           .STRINGZ    "Input a 2 digit decimal number (end with newline):"
 ASCII           .FILL       xFFD0                                   ; To account for difference between ascii and 2's complement
 EMPTY           .FILL       xC000
 STACK           .FILL       x4000
-MULTIPLIERS     .FILL       #9
+MULTIPLIERS     .FILL       #0
+                .FILL       #9
                 .FILL       #99
                 .FILL       #999
                 .FILL       #9999
