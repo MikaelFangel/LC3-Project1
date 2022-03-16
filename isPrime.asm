@@ -7,7 +7,7 @@
                 .ORIG       x4200
 ISPRIME         ST          R1,Save1
                 ST          R2,Save2
-                ST          R3,Save2
+                ST          R3,Save3
                 ADD         R2,R0,#-1               ; Check if R0 is 1 to avoid infinity loop
                 BRz         NOTAPRIME
                 AND         R2,R2,#0
@@ -28,7 +28,10 @@ APRIME          AND         R0,R0,#0
                 ADD         R0,R0,#1
                 BRnzp       STOP
 NOTAPRIME       AND         R0,R0,#0
-STOP            RET
+STOP            LD          R1,Save3
+                LD          R2,Save2
+                LD          R3,Save1
+                RET
 ;
 Save1           .FILL       x0000
 Save2           .FILL       x0000
