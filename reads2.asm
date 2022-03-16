@@ -27,6 +27,7 @@ NEWIN           IN
 
 ENDLOOP         AND         R0,R0,#0
                 ADD         R0,R0,#0
+                LEA         R5,MULTIPLIERS
 MULT            LD          R2,EMPTY
                 ADD         R2,R2,R6                                ; Check if empty
                 BRz         RETURN
@@ -36,11 +37,12 @@ MULT            LD          R2,EMPTY
                 BRz         SKIP
 ;               
                 ADD         R4,R1,#0
-                AND         R3,R3,#0
-                ADD         R3,R3,#9
+                LDR         R3,R5,#0
+                ADD         R5,R5,#1
 AGAIN           ADD         R1,R1,R4
                 ADD         R3,R3,#-1
                 BRp         AGAIN
+;
 SKIP            ADD         R0,R0,R1
                 BRnzp       MULT
                 
@@ -50,4 +52,8 @@ INPUT           .STRINGZ    "Input a 2 digit decimal number (end with newline):"
 ASCII           .FILL       xFFD0                                   ; To account for difference between ascii and 2's complement
 EMPTY           .FILL       xC000
 STACK           .FILL       x4000
+MULTIPLIERS     .FILL       #9
+                .FILL       #99
+                .FILL       #999
+                .FILL       #9999
                 .END
