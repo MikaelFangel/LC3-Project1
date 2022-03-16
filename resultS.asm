@@ -6,14 +6,13 @@
 ;
                 .ORIG       x4300
                 ADD         R0,R0,#0
-                BRp         PRINT1
-PRINT0          LEA         R0,RESULT0
-                PUTS
+                BRp         TRUE
+                LEA         R0,RESULT0
                 BRnzp       RETURN
 ;
-PRINT1          LEA         R0,RESULT1
-                PUTS
-RETURN          RET
+TRUE            LEA         R0,RESULT1
+RETURN          PUTS
+                RET
 ;
 RESULT1         .STRINGZ    "The number is prime"
 RESULT0         .STRINGZ    "The number is not prime"
