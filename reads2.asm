@@ -47,7 +47,6 @@ MULT            LD          R2,EMPTY
                 ADD         R1,R1,#0
                 BRnp        AGAIN
                 ADD         R3,R3,#1
-                ADD         R0,R0,R3
                 BRnzp       MULT
 ;
 AGAIN           ADD         R1,R1,R4
