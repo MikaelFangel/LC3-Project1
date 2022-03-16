@@ -30,32 +30,29 @@ NEWIN           IN
                 ADD         R2,R2,#-1                               ; Ensures a maximum of five digits is entered
                 BRz         ENDLOOP
                 BRnzp       NEWIN
-
+;
 ENDLOOP         AND         R0,R0,#0
                 LEA         R5,MULTIPLIERS
 MULT            LD          R2,EMPTY
                 ADD         R2,R2,R6                                ; Check if empty
                 BRz         RETURN
                 LDR         R1,R6,#0                                ; Get top of stack
-                ADD         R6,R6,#1
-;                ADD         R0,R0,#0
-;                BRz         SKIP
+                ADD         R6,R6,#1                                ; Pop element
 ;               
                 ADD         R4,R1,#0
-                LDR         R3,R5,#0
-                ADD         R5,R5,#1
-                ADD         R3,R3,#0
+                LDR         R3,R5,#0                                ; Get number of run throughs
+                ADD         R5,R5,#1                                ; Prepare next
+                ADD         R3,R3,#0                                ; If first element from stack skip multiplication
                 BRz         SKIP
                 ADD         R1,R1,#0
-                BRnp        AGAIN
-                ADD         R3,R3,#1
-                BRnzp       MULT
+                BRnp        AGAIN                                   ; If R1 is a number den start multiplication
+                BRz         MULT                                    ; If zero look at  next element in the stack
 ;
-AGAIN           ADD         R1,R1,R4
+AGAIN           ADD         R1,R1,R4                                ; The actual muliplication
                 ADD         R3,R3,#-1
                 BRp         AGAIN
 ;
-SKIP            ADD         R0,R0,R1
+SKIP            ADD         R0,R0,R1                                ; The running sum
                 BRnzp       MULT
                 
 RETURN          LD          R5,Save5                                ; Restore original register values
