@@ -1,4 +1,3 @@
-
 ;
 ;   READS
 ;   A routine that reads a two digit number from the console
@@ -11,6 +10,7 @@ READS           ST          R1,Save1                                ; Save regis
                 ST          R3,Save3
                 ST          R4,Save4
                 ST          R5,Save5
+                ST          R7,Save7
 ;
                 LEA         R0,INPUT
                 LD          R1,ASCII
@@ -66,9 +66,10 @@ RETURN          LD          R5,Save5                                ; Restore or
                 LD          R3,Save3
                 LD          R2,Save2
                 LD          R1,Save1
+                LD          R7,Save7
                 RET
 ;
-INPUT           .STRINGZ    "Input a 2 digit decimal number (end with newline):"
+INPUT           .STRINGZ    "Input a decimal number (end with newline):"
 ERRORMSG        .STRINGZ    "Error not a number. Try again!"
 ASCII           .FILL       xFFD0                                   ; To account for difference between ascii and 2's complement
 EMPTY           .FILL       xC000
@@ -83,4 +84,5 @@ Save2           .FILL       x0000
 Save3           .FILL       x0000
 Save4           .FILL       x0000
 Save5           .FILL       x0000
+Save7           .FILL       x0000
                 .END

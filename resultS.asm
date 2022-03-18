@@ -6,6 +6,7 @@
 ;
                 .ORIG       x4300
                 ST          R0,Save1
+                ADD         R0, R0, #0
                 BRp         TRUE
                 LEA         R0,RESULT0
                 BRnzp       RETURN

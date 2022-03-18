@@ -9,6 +9,7 @@ READS           ST          R1,Save1                                ; Save regis
                 ST          R2,Save2
                 ST          R3,Save3
                 ST          R4,Save4
+                ST          R7,Save7
                 LEA         R0,INPUT
                 PUTS                                                ; Prints the string labelled input to the console
                 AND         R1,R1,#0
@@ -28,7 +29,8 @@ READS           ST          R1,Save1                                ; Save regis
                 LD          R3,Save3
                 LD          R2,Save2
                 LD          R1,Save1
-                HALT
+                LD          R7,Save7
+                RET
 ;
 MULT10          AND         R0,R0,#0                                ; Multiplies the value in R1 with 10
                 AND         R4,R4,#0
@@ -45,4 +47,5 @@ Save1           .FILL       x0000
 Save2           .FILL       x0000
 Save3           .FILL       x0000
 Save4           .FILL       x0000
+Save7           .FILL       x3000
                 .END
