@@ -1,7 +1,7 @@
 ;
-;   READS
-;   A routine that reads a two digit number from the console
-;   Input: a two digit number read from the console
+;   READS2
+;   A routine that reads a five digit number from the console
+;   Input: a five digit number read from the console
 ;   Output: the number read from the console in R0
 ;
                 .ORIG       x4000
