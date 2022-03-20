@@ -28,9 +28,9 @@ APRIME          AND         R0,R0,#0
                 ADD         R0,R0,#1
                 BRnzp       STOP
 NOTAPRIME       AND         R0,R0,#0
-STOP            LD          R1,Save3
+STOP            LD          R3,Save3
                 LD          R2,Save2
-                LD          R3,Save1
+                LD          R1,Save1
                 RET
 ;
 Save1           .FILL       x0000
